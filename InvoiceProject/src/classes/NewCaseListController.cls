@@ -1,0 +1,11 @@
+/**
+ * Created by user on 10-Sep-19.
+ */
+
+public with sharing class NewCaseListController {
+
+    public List<Case> getNewCases(){
+        List<Case> cases = [SELECT Id,CaseNumber FROM Case WHERE Status='New'];
+        return cases;
+    }
+}
