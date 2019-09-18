@@ -1,0 +1,24 @@
+<apex:page id="Page1" controller="PageController">
+
+    <apex:sectionHeader title="Invoices" subtitle="All Invoices"/>
+
+    <apex:form>
+        <apex:pageBlock>
+            <apex:pageBlockTable value="{! Invoices }" var="invoice">
+                <apex:column value="{! invoice.Name}"/>
+                <apex:column value="{! invoice.UserFirstName__c}"/>
+                <apex:column value="{! invoice.UserLastName__c}"/>
+                <apex:column value="{! invoice.UserEmail__c}"/>
+                <apex:column value="{! invoice.Id}"/>
+
+                <apex:column>
+                    <apex:commandButton value="Item" reRender="items" action="{!goToPdfPageReference}">
+                        <apex:param name="invoice.Id" assignTo="{! invoiceId }" value="{!invoice.Id}"/>
+                        <apex:param name="Pdf Name" assignTo="{!pdfName}" value="{! invoice.Name}.pdf"/>
+                        <apex:param name="Email" assignTo="{!invoiceEmail}" value="{! invoice.UserEmail__c}"/>
+                    </apex:commandButton>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

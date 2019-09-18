@@ -1,0 +1,27 @@
+<!--
+ - Created by user on 18-Sep-19.
+ -->
+
+<apex:page id="PDFPage" controller="PDFPageController" showHeader="false" >
+
+    <apex:outputText value="Email:{!invoiceEmail}" />
+
+    <apex:form>
+    <apex:pageBlock>
+        <apex:pageBlockTable value="{!InvoiceItems}" var="item" id="items" columns="20">
+            <apex:column value="{! item.Name}"/>
+            <apex:column value="{! item.Amount__c}"/>
+            <apex:column value="{! item.Item__r.Name}"/>
+            <apex:column value="{! item.Item__r.Cost__c}"/>
+            <apex:column value="{! item.Invoice__r.UserEmail__c}"/>
+        </apex:pageBlockTable>
+
+    </apex:pageBlock>
+    </apex:form>
+    <apex:form>
+        <apex:commandLink  action="{! saveToPdf }" value="Save to PDF"/>
+        <br/>
+        <apex:commandLink  action="{!goBack}" value="Go back"/>
+        <!--            <apex:commandButton value="Send to Invoice Email" action="{!sendEmail}"/>-->
+    </apex:form>
+</apex:page>
